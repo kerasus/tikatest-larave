@@ -13,14 +13,55 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'user_info';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+//        'id_user',
         'name',
-        'email',
+        'lastname',
+        'FullName',
+        'username',
         'password',
+        'MelliCode',
+        'StudentCode',
+        'student_tell',
+        'BirthDay',
+        'Reshte',
+        'Paie',
+        'Class',
+        'Address',
+        'studentMail',
+        'gender',
+        'picture',
+        'fatherName',
+        'fatherTell',
+        'fatherJob',
+        'fatherMelliCode',
+        'fatherPassword',
+        'fatherMail',
+        'motherName',
+        'motherLastName',
+        'motherTell',
+        'motherJob',
+        'motherMelliCode',
+        'motherPassword',
+        'motherMail',
+        'preRegistration',
+        'deletedStatus',
+        'user_type',
+        'more_info',
+        'manager_id',
+        'background_type',
+        'xp'
     ];
 
     /**
@@ -29,7 +70,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+//        'password',
         'remember_token',
     ];
 
