@@ -20,6 +20,13 @@ class User extends Authenticatable
     protected $table = 'user_info';
 
     /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id_user';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>

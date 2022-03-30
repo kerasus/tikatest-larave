@@ -14,14 +14,14 @@ use PDO;
 
 trait DbConnection
 {
-    private function getNewConnectionConfig() {
+    private function getBaseConnectionConfig($database) {
         // Request $request
         return [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => 'tikate_121',
+            'database' => $database,
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
@@ -37,9 +37,25 @@ trait DbConnection
         ];
     }
 
+    private function getNewConnectionConfig() {
+        // Request $request
+        return $this->getBaseConnectionConfig('tikate_121');
+    }
+
+    private function getOldConnectionConfig() {
+        // Request $request
+        return $this->getBaseConnectionConfig(env('DB_DATABASE', 'tikate_customerList'));
+    }
+
     private function setNewConnection() {
         DB::purge('mysql');
         Config::set('database.connections.mysql', $this->getNewConnectionConfig());
+        DB::setDefaultConnection('mysql');
+    }
+
+    private function setOldConnection() {
+        DB::purge('mysql');
+        Config::set('database.connections.mysql', $this->getOldConnectionConfig());
         DB::setDefaultConnection('mysql');
     }
 }
